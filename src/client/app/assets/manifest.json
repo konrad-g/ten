@@ -1,0 +1,41 @@
+{
+  "name": "XWeb24",
+  "icons": [{
+        "src": "/src/client/app/assets/icon-192.png",
+        "sizes": "192x192"
+      }, {
+        "src": "/src/client/app/assets/icon-128.png",
+        "sizes": "128x128"
+      }, {
+        "src": "/src/client/app/assets/icon-152.png",
+        "sizes": "152x152"
+      }, {
+        "src": "/src/client/app/assets/icon-144.png",
+        "sizes": "144x144"
+      }, {
+        "src": "/src/client/app/assets/icon-120.png",
+        "sizes": "120x120"
+      }, {
+        "src": "/src/client/app/assets/icon-114.png",
+        "sizes": "114x114"
+      }, {
+        "src": "/src/client/app/assets/icon-76.png",
+        "sizes": "76x76"
+      }, {
+        "src": "/src/client/app/assets/icon-72.png",
+        "sizes": "72x72"
+      }, {
+        "src": "/src/client/app/assets/icon-57.png",
+        "sizes": "57x57"
+      }],
+  "description": "Access your data everywhere.",
+  "developer": {
+    "name": "Digital Jetty",
+    "url": "https://digitaljetty.com"
+  },
+  "default_locale": "en",
+  "launch_path": "/",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape"
+}

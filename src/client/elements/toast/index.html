@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html style="
+    width: 100%;
+    height: 100%;
+>
+<head lang=" en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+
+  <!-- Logic libraries -->
+  <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../../../../bower_components/pointer-events-polyfill/dist/pep.min.js"></script>
+
+  <!-- Element files -->
+  <script src="Toast.js"></script>
+  <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
+
+</head>
+<body style="
+      width: 100%;
+      height: 100%;
+      position: relative;
+      margin: 0;
+      box-sizing: border-box;
+      padding: 10px;"
+>
+
+<button id="showInfo">Show info</button>
+<button id="showSuccess">Show success</button>
+<button id="showWarning">Show warning</button>
+<button id="showError">Show error</button>
+<button id="showMany">Show many</button>
+
+<script>
+
+  var toastParent = $("body");
+  var toastLogger = new Toast(toastParent);
+
+  $("#showInfo").click(function () {
+    toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
+  });
+
+  $("#showWarning").click(function () {
+    toastLogger.showWarning("This is warning", "This is warning message. It is really long and it doesn't really fit into this small toast");
+  });
+
+  $("#showSuccess").click(function () {
+    toastLogger.showSuccess("Success", "You made it. Congratulations!");
+  });
+
+  $("#showError").click(function () {
+    toastLogger.showError("This is error", "This is error message. It is really long and it doesn't really fit into this small toast");
+  });
+
+  $("#showMany").click(function () {
+    for (var i = 0; i < 10; i++) {
+      toastLogger.showInfo("This is info", "This is info message");
+      toastLogger.showSuccess("Success", "You made it. Congratulations!");
+      toastLogger.showWarning("This is warning", "This is warning message");
+      toastLogger.showError("This is error", "This is error message");
+    }
+  });
+</script>
+</body>
+
+</html>
