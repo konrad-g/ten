@@ -59,13 +59,11 @@ That means certain folder structure:
 src/  
 ├── client/  
 │   ├── app/  
-│   ├── common/  
-│   ├── elements/  
+│   └── elements/  
 │   
 └── server/  
     ├── app/  
-    ├── common/  
-    ├── elements/  
+    └── elements/  
 ```    
 
 Folders functions:  
