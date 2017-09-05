@@ -55,6 +55,7 @@ In production mode all your imports will be put together and minified to single 
 Both client and server consist of modular structure. 
 That means certain folder structure:
 
+```
 src/  
 ├── client/  
 │   ├── app/  
@@ -65,7 +66,7 @@ src/
     ├── app/  
     ├── common/  
     ├── elements/  
-    
+```    
 
 Folders functions:  
 `app` - Consist of main application, server or client. It basically wires all elements together.  
