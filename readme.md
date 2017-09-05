@@ -11,20 +11,14 @@
 `npm install`  
 `bower install`
 
-## Start application in development mode
-On OS X / Linux  
-`npm run start`  
-  
-On Windows  
-`npm run start-win`
+## Start application in development mode  
 
-## Start application in production mode
-On OS X / Linux  
+`npm run start`  
+
+## Start application in production mode  
+
 `npm run start-prod`  
   
-On Windows  
-`npm run start-prod-win`
-
 ## Run tests
 Run all tests: `npm run test-all`  
 Run client tests: `npm run test-client`  

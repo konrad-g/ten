@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec ./node_modules/.bin/ts-node -- ./boot-dev.ts",
-    "start-prod": "./node_modules/.bin/ts-node ./boot-prod.ts",
-    "start-win": "nodemon --exec .\\node_modules\\.bin\\ts-node -- .\\boot-dev.ts",
-    "start-prod-win": ".\\node_modules\\.bin\\ts-node .\\boot-prod.ts",
+    "start": "nodemon --exec \"ts-node\" -- \"src/server/app/BootDev.ts\"",
+    "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
     "test-all": "npm run test-server && npm run test-client",
     "test-client": "karma start karma.conf.js",
     "test-server": "mocha -r ts-node/register test/server/**/*.ts"

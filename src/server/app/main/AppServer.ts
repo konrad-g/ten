@@ -1,6 +1,6 @@
 import {AppServerListener} from "./AppServerListener";
-import {CommonPageMain} from "./models/CommonPageMain";
-import {CommonPageBase} from "./models/CommonPageBase";
+import {PageBase} from "../../elements/pages/base/PageBase";
+import {PageMain} from "../../elements/pages/main/PageMain";
 
 export class AppServer {
 
@@ -51,11 +51,11 @@ export class AppServer {
     }
 
     // Page base
-    var pageBase: CommonPageBase = new CommonPageBase();
+    var pageBase: PageBase = new PageBase();
     self.appListener.registerPage(pageBase);
 
     // Page main
-    var pageMain: CommonPageMain = new CommonPageMain(self.appListener);
+    var pageMain: PageMain = new PageMain(self.appListener);
     self.appListener.registerPage(pageMain);
 
     // Routes

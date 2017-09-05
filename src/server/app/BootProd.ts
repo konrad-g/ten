@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import {AppServer} from "./src/server/app/AppServer";
+import {AppServer} from "./main/AppServer";
 
-var isProduction = false;
+var isProduction = true;
 var mainApp = new AppServer(isProduction);
 mainApp.start();
