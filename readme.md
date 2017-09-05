@@ -46,8 +46,8 @@ In development mode you will get all your imports as separate entries so they wi
 In production mode all your imports will be put together and minified to single .js and .css file so that they are as small as possible and fast to load.
 
 ## Architecture
-Both client and server consist of modular structure. 
-That means certain folder structure:
+Both client and server consist of modular structure.  
+That means certain folder order:
 
 ```
 src/  
