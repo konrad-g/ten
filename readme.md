@@ -67,6 +67,5 @@ src/
 ```    
 
 Folders functions:  
-`app` - Consist of main application, server or client. It basically wires all elements together.  
-`common` - Usually custom helpers and libraries commonly used by elements.  
+`app` - Consist of main application, server or client. It basically wires all elements together.   
 `elements` - Independent elements. It means that they don't depend on any other elements or application source code or asset. They can only depend on libraries used by project or on helper files in `common` folder. It makes them independent from this project, which means they can be reused in other applications by other people easily.   
