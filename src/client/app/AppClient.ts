@@ -6,7 +6,7 @@ class AppClient {
   initiated = false;
   toastLogger: Toast;
 
-  constructior() {
+  constructor() { 
   }
 
   start() {
