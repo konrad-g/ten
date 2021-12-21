@@ -1,8 +1,8 @@
-import {AppServerListener} from "./AppServerListener";
-import {PageBase} from "../../elements/pages/base/PageBase";
-import {PageMain} from "../../elements/pages/main/PageMain";
+import {ServerListener} from "./ServerListener";
+import {PageBase} from "../pages/base/PageBase";
+import {PageMain} from "../pages/main/PageMain";
 
-export class AppServer {
+export class Server {
 
   port;
   server;
@@ -11,7 +11,7 @@ export class AppServer {
   cluster = require('cluster');
   numCPUs = require('os').cpus().length;
   isProduction: boolean;
-  appListener: AppServerListener = new AppServerListener();
+  appListener: ServerListener = new ServerListener();
 
   constructor(isProduction: boolean) {
     this.isProduction = isProduction;

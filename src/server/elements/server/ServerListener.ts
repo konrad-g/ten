@@ -1,4 +1,4 @@
-import {IPageMain} from "../../elements/pages/main/IPageMain";
+import {IPageMain} from "../pages/main/IPageMain";
 
 var express = require('express');
 var path = require('path');
@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var hbs = require('hbs');
 
-export class AppServerListener implements IPageMain {
+export class ServerListener implements IPageMain {
 
   private USE_SCSS = false;
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png";
