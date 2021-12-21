@@ -1,0 +1,10 @@
+{
+  "name": "ten",
+  "version": "1.0.0",
+  "description": "TypeScript + Express.js + Node",
+  "author": "Konrad Gadzinowski <kgadzinowski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
