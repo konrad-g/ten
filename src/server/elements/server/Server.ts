@@ -1,7 +1,6 @@
 import {ServerListener} from "./ServerListener";
 import {PageBase} from "../pages/base/PageBase";
 import {PageMain} from "../pages/main/PageMain";
-import process from 'process';
 import cluster from 'cluster';
 
 export class Server {
@@ -29,8 +28,8 @@ export class Server {
     self.server = self.http.createServer(self.getExpress());
 
     // Use multi-core on production
-    if (self.isProduction && cluster.isMaster) {
-      console.log('Master cluster setting up ' + self.numCPUs + ' workers...');
+    if (self.isProduction && cluster.isPrimary) {
+      console.log('Main cluster setting up ' + self.numCPUs + ' workers...');
       for (var i = 0; i < self.numCPUs; i++) {
         cluster.fork();
       }

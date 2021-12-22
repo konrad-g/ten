@@ -6,12 +6,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var sassMiddleware = require('node-sass-middleware');
 var hbs = require('hbs');
 
 export class ServerListener implements IPageMain {
 
-  private USE_SCSS = false;
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png";
 
   public express = express();
@@ -43,15 +41,6 @@ export class ServerListener implements IPageMain {
     hbs.registerPartials(viewsPath);
     this.express.use('/stylesheets', express.static(path.join(page.getPath(), 'stylesheets')));
     this.express.use('/assets', express.static(path.join(page.getPath(), 'stylesheets')));
-
-    if (this.USE_SCSS) {
-      this.express.use(sassMiddleware({
-        src: path.join(page.getPath(), 'stylesheets'),
-        dest: path.join(page.getPath(), 'stylesheets'),
-        indentedSyntax: false, // true = .sass and false = .scss
-        sourceMap: true
-      }));
-    }
   }
 
   renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) {
