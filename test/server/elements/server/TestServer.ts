@@ -1,12 +1,12 @@
-import {AppServer} from "../../src/server/app/AppServer";
 import {expect} from 'chai';
+import { Server } from '../../../../src/server/elements/server/Server';
 
 describe("AppServer", function () {
 
   var app;
 
   beforeEach(function () {
-    app = new AppServer(false);
+    app = new Server(false);
   });
 
   afterEach(function () {

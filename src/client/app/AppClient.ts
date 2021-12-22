@@ -1,5 +1,4 @@
-/// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
-/// <reference path="../elements/toast/Toast.ts" />
+import "./stylesheets/style.scss"
 
 class AppClient {
 
@@ -14,15 +13,14 @@ class AppClient {
     if (this.initiated) return;
     this.initiated = true;
 
-    var self = this;
+    const self = this;
 
-    var toastParent = $("body");
-    self.toastLogger = new Toast(toastParent);
+    self.toastLogger = new Toast(document.body);
 
-    $("#showToast").click(function () {
+    document.querySelector("#showToast").addEventListener('click', () => {
 
-      var results = 5;
-      var executeToast = results * Math.random();
+      const results = 5;
+      const executeToast = results * Math.random();
 
       if (executeToast < 1) {
         self.toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
@@ -47,7 +45,5 @@ class AppClient {
 }
 
 // Boot
-$(function () {
-  var app = new AppClient();
-  app.start();
-});
+const app = new AppClient();
+app.start();
