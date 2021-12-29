@@ -1,4 +1,6 @@
 var gulp = require('gulp');
+
+/*
 var fs = require("fs");
 var clean = require('gulp-clean');
 var runSequence = require('gulp-run-sequence');
@@ -12,7 +14,11 @@ var typescript = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 var scss = require("gulp-scss");
 var watch = require('gulp-watch');
+*/
 
+const webpack = require('webpack-stream');
+
+/*
 var OUTPIT_FOLDER_PATH = './dist';
 var VIEW_SCRIPTS_PATH = 'src/server/elements/pages/base/views/scripts.hbs';
 var VIEW_STYLES_PATH = 'src/server/elements/pages/base/views/styles.hbs';
@@ -75,86 +81,94 @@ var typescriptProject = typescript.createProject({
   removeComments: true,
   emitDecoratorMetadata: false
 });
+*/
 
+// gulp.task('transpile-client-ts', function () {
+//   return gulp.src(TRANSPILE_TYPESCRIPT_PATH + "**/*.ts")
+//     .pipe(sourcemaps.init())
+//     .pipe(typescriptProject())
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest(TRANSPILE_TYPESCRIPT_PATH));
+// });
 
-gulp.task('transpile-client-ts', function () {
-  return gulp.src(TRANSPILE_TYPESCRIPT_PATH + "**/*.ts")
-    .pipe(sourcemaps.init())
-    .pipe(typescriptProject())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(TRANSPILE_TYPESCRIPT_PATH));
-});
+// gulp.task('watch-client-ts', ['transpile-client-ts'], function () {
+//   gulp.watch(TRANSPILE_TYPESCRIPT_PATH + "**/*.ts", ['transpile-client-ts']);
+// });
 
-gulp.task('watch-client-ts', ['transpile-client-ts'], function () {
-  gulp.watch(TRANSPILE_TYPESCRIPT_PATH + "**/*.ts", ['transpile-client-ts']);
-});
+// // SCSS
 
-// SCSS
+// gulp.task('watch-all-scss', function () {
+//   // Endless stream mode
+//   return watch(TRANSPILE_SCSS_PATH + "**/*.scss", {ignoreInitial: false})
+//     .pipe(sourcemaps.init())
+//     .pipe(scss({}))
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest(TRANSPILE_SCSS_PATH));
+// });
 
-gulp.task('watch-all-scss', function () {
-  // Endless stream mode
-  return watch(TRANSPILE_SCSS_PATH + "**/*.scss", {ignoreInitial: false})
-    .pipe(sourcemaps.init())
-    .pipe(scss({}))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(TRANSPILE_SCSS_PATH));
-});
+// gulp.task('transpile-all-scss', function () {
+//   return gulp.src(TRANSPILE_SCSS_PATH + "**/*.scss")
+//     .pipe(sourcemaps.init())
+//     .pipe(scss({}))
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest(TRANSPILE_SCSS_PATH));
+// });
 
-gulp.task('transpile-all-scss', function () {
-  return gulp.src(TRANSPILE_SCSS_PATH + "**/*.scss")
-    .pipe(sourcemaps.init())
-    .pipe(scss({}))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(TRANSPILE_SCSS_PATH));
-});
+// // Generating scripts and styles imports
 
-// Generating scripts and styles imports
+// gulp.task('add-single-imports', function () {
 
-gulp.task('add-single-imports', function () {
+//   // Update scripts import
+//   require('fs').writeFileSync(VIEW_SCRIPTS_PATH,
+//     "<script src=\"/dist/scripts-" + versionNumber + ".min.js\"></script>");
 
-  // Update scripts import
-  require('fs').writeFileSync(VIEW_SCRIPTS_PATH,
-    "<script src=\"/dist/scripts-" + versionNumber + ".min.js\"></script>");
+//   // Update styles import
+//   require('fs').writeFileSync(VIEW_STYLES_PATH,
+//     "<link rel=\"stylesheet\" href=\"/dist/styles-" + versionNumber + ".min.css\" rel=\"stylesheet\" type=\"text/css\" />");
 
-  // Update styles import
-  require('fs').writeFileSync(VIEW_STYLES_PATH,
-    "<link rel=\"stylesheet\" href=\"/dist/styles-" + versionNumber + ".min.css\" rel=\"stylesheet\" type=\"text/css\" />");
+//   return;
+// });
 
-  return;
-});
+// gulp.task('dev', function () {
 
-gulp.task('dev', function () {
+//   // Write single imports
+//   var fileScriptsContent = "";
+//   var fileStylesContent = "";
 
-  // Write single imports
-  var fileScriptsContent = "";
-  var fileStylesContent = "";
+//   // Add all scripts
+//   for (var i = 0; i < IMPORT_SCRIPTS.length; i++) {
+//     var script = IMPORT_SCRIPTS[i];
+//     script = script.substring(1, script.length);
+//     fileScriptsContent += "<script src=\"" + script + "\"></script>" + "\n";
+//   }
 
-  // Add all scripts
-  for (var i = 0; i < IMPORT_SCRIPTS.length; i++) {
-    var script = IMPORT_SCRIPTS[i];
-    script = script.substring(1, script.length);
-    fileScriptsContent += "<script src=\"" + script + "\"></script>" + "\n";
-  }
+//   // Add all styles
+//   for (var i = 0; i < IMPORT_STYLES.length; i++) {
+//     var style = IMPORT_STYLES[i];
+//     style = style.substring(1, style.length);
+//     fileStylesContent += "<link rel=\"stylesheet\" href=\"" + style + "\" rel=\"stylesheet\" type=\"text/css\" />" + "\n";
+//   }
 
-  // Add all styles
-  for (var i = 0; i < IMPORT_STYLES.length; i++) {
-    var style = IMPORT_STYLES[i];
-    style = style.substring(1, style.length);
-    fileStylesContent += "<link rel=\"stylesheet\" href=\"" + style + "\" rel=\"stylesheet\" type=\"text/css\" />" + "\n";
-  }
+//   // Update scripts import
+//   require('fs').writeFileSync(VIEW_SCRIPTS_PATH, fileScriptsContent);
 
-  // Update scripts import
-  require('fs').writeFileSync(VIEW_SCRIPTS_PATH, fileScriptsContent);
+//   // Update styles import
+//   require('fs').writeFileSync(VIEW_STYLES_PATH, fileStylesContent);
 
-  // Update styles import
-  require('fs').writeFileSync(VIEW_STYLES_PATH, fileStylesContent);
+// });
 
-});
+// /**
+//  * Build production project
+//  */
+// gulp.task('prod', ['clean'], function () {
+//   runSequence(
+//     'transpile-client-ts', 'minimize-js', 'minimize-css', 'add-single-imports');
+// });
 
-/**
- * Build production project
- */
-gulp.task('prod', ['clean'], function () {
-  runSequence(
-    'transpile-client-ts', 'minimize-js', 'minimize-css', 'add-single-imports');
+gulp.task('compile', function () {
+  return gulp.src('src/client/app/AppClient.ts')
+    .pipe(webpack({
+      config : require('./webpack.config.js')
+    }))
+    .pipe(gulp.dest('dist/'));
 });
