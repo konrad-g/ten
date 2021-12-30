@@ -38,7 +38,7 @@ export class Toast {
       type +
       '"></div>' +
       '<div class="dj-toast-text"><div class="dj-toast-title">' +
-      title +
+      title + 
       '</div><div class="dj-toast-message">' +
       message +
       "</div></div>"
