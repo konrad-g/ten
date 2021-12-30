@@ -1,9 +1,7 @@
 export class App {
-  getRoutes() {
+  getRoutes(router: any) {
     // TODO: Implement
-  }
-
-  getStorage() {
-    // TODO: Implement
+    // router.get("/", PageMain)
+    // router.get("/contact-us", PageContactUs)
   }
 }

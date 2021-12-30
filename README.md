@@ -36,6 +36,9 @@ Client tests configuration is in `karma.conf.js`
 ## Watch TypeScript and SCSS changes
 `gulp watch-ts-scss`
 
+## To automatically format code  
+`npm run format-code`  
+
 ## Transpile client TypeScript and all SCSS  
 `gulp transpile-client-ts`  
 `gulp transpile-all-scss`  
