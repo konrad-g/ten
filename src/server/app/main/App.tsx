@@ -1,5 +1,4 @@
 export class App {
-
   getRoutes() {
     // TODO: Implement
   }

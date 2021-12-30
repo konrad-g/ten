@@ -8,6 +8,7 @@
     "start": "nodemon --exec \"ts-node\" -- \"src/server/app/BootDev.ts\"",
     "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
     "build-client": "gulp build-client",
+    "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
     "test-all": "npm run test-server && npm run test-client",
     "test-client": "karma start karma.conf.js",
     "test-server": "mocha -r ts-node/register test/server/**/*.ts"
@@ -54,6 +55,7 @@
     "mini-css-extract-plugin": "^2.4.5",
     "mocha": "^9.1.3",
     "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }

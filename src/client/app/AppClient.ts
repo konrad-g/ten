@@ -2,49 +2,45 @@ import { Toast } from "./../elements/toast/Toast"
 import "./styles/style.scss"
 
 class AppClient {
+  initiated = false
+  toastLogger: Toast
 
-  initiated = false;
-  toastLogger: Toast;
-
-  constructor() { 
-  }
+  constructor() {}
 
   start() {
+    if (this.initiated) return
+    this.initiated = true
 
-    if (this.initiated) return;
-    this.initiated = true;
+    const self = this
 
-    const self = this;
+    self.toastLogger = new Toast(document.body)
 
-    self.toastLogger = new Toast(document.body);
-
-    document.querySelector("#showToast").addEventListener('click', () => {
-
-      const results = 5;
-      const executeToast = results * Math.random();
+    document.querySelector("#showToast").addEventListener("click", () => {
+      const results = 5
+      const executeToast = results * Math.random()
 
       if (executeToast < 1) {
-        self.toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message");
+        self.toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message")
       } else if (executeToast < 2) {
-        self.toastLogger.showWarning("This is warning", "This is warning message.");
+        self.toastLogger.showWarning("This is warning", "This is warning message.")
       } else if (executeToast < 3) {
-        self.toastLogger.showSuccess("Success", "You made it. Congratulations!");
+        self.toastLogger.showSuccess("Success", "You made it. Congratulations!")
       } else if (executeToast < 4) {
-        self.toastLogger.showError("This is error", "This is error message.");
+        self.toastLogger.showError("This is error", "This is error message.")
       } else if (executeToast <= 5) {
-        self.showMultipleToasts();
+        self.showMultipleToasts()
       }
-    });
+    })
   }
 
   showMultipleToasts() {
-    this.toastLogger.showInfo("This is info", "This is info message");
-    this.toastLogger.showSuccess("Success", "You made it. Congratulations!");
-    this.toastLogger.showWarning("This is warning", "This is warning message");
-    this.toastLogger.showError("This is error", "This is error message");
+    this.toastLogger.showInfo("This is info", "This is info message")
+    this.toastLogger.showSuccess("Success", "You made it. Congratulations!")
+    this.toastLogger.showWarning("This is warning", "This is warning message")
+    this.toastLogger.showError("This is error", "This is error message")
   }
 }
 
 // Boot
-const app = new AppClient();
-app.start();
+const app = new AppClient()
+app.start()

@@ -1,46 +1,43 @@
-import {IPageMain} from "../pages/main/IPageMain";
+import { IPageMain } from "../pages/main/IPageMain"
 
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var hbs = require('hbs');
+var express = require("express")
+var path = require("path")
+var favicon = require("serve-favicon")
+var logger = require("morgan")
+var cookieParser = require("cookie-parser")
+var bodyParser = require("body-parser")
+var hbs = require("hbs")
 
 export class ServerListener implements IPageMain {
+  private FAVICON_PATH: string = "../../../client/app/assets/favicon.png"
 
-  private FAVICON_PATH: string = "../../../client/app/assets/favicon.png";
+  public express = express()
+  expressViews: Array<string> = new Array()
 
-  public express = express();
-  expressViews: Array<string> = new Array();
-
-  constructor() {
-  }
+  constructor() {}
 
   init() {
-
     // view engine setup
-    this.express.set('view engine', 'hbs');
-    this.express.use(favicon(path.join(__dirname, this.FAVICON_PATH)));
+    this.express.set("view engine", "hbs")
+    this.express.use(favicon(path.join(__dirname, this.FAVICON_PATH)))
 
-    this.express.use(logger('dev'));
-    this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({extended: false}));
-    this.express.use(cookieParser());
+    this.express.use(logger("dev"))
+    this.express.use(bodyParser.json())
+    this.express.use(bodyParser.urlencoded({ extended: false }))
+    this.express.use(cookieParser())
 
-    this.express.use('/src/client', express.static(path.join(__dirname, '../../../../src/client')));
-    this.express.use('/dist', express.static(path.join(__dirname, '../../../../dist')));
-    this.express.use('/client-libs', express.static(path.join(__dirname, '../../../../client-libs')));
+    this.express.use("/src/client", express.static(path.join(__dirname, "../../../../src/client")))
+    this.express.use("/dist", express.static(path.join(__dirname, "../../../../dist")))
+    this.express.use("/client-libs", express.static(path.join(__dirname, "../../../../client-libs")))
   }
 
   public registerPage(page: any) {
-    var viewsPath = path.join(page.getPath(), '/views');
-    this.expressViews.push(viewsPath);
-    this.express.set('views', this.expressViews);
-    hbs.registerPartials(viewsPath);
-    this.express.use('/stylesheets', express.static(path.join(page.getPath(), 'stylesheets')));
-    this.express.use('/assets', express.static(path.join(page.getPath(), 'stylesheets')));
+    var viewsPath = path.join(page.getPath(), "/views")
+    this.expressViews.push(viewsPath)
+    this.express.set("views", this.expressViews)
+    hbs.registerPartials(viewsPath)
+    this.express.use("/stylesheets", express.static(path.join(page.getPath(), "stylesheets")))
+    this.express.use("/assets", express.static(path.join(page.getPath(), "stylesheets")))
   }
 
   renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) {
@@ -50,6 +47,6 @@ export class ServerListener implements IPageMain {
       keywords: keywords,
       disableIndexing: disableIndexing,
       layout: "layout"
-    });
+    })
   }
 }
