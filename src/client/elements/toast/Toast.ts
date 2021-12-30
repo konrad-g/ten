@@ -1,12 +1,6 @@
-enum TypeToast {
-  INFO,
-  WARNING,
-  ERROR
-}
+import "./styles/main.scss"
 
-class Toast {
-
-  private static instance: Toast;
+export class Toast {
 
   private static FADE_MS = 400;
   private REMOVE_TIME_MS = 10000;
@@ -20,74 +14,82 @@ class Toast {
   }
 
   public showSuccess(title: string, message: string) {
-    var text: string = this.getCustomToast(title, message, "success");
-    var toast: any = this.addToast(text);
+    const text: string = this.getCustomToast(title, message, "success");
+    this.addToast(text);
   }
 
   public showInfo(title: string, message: string) {
-    var text: string = this.getCustomToast(title, message, "info");
-    var toast: any = this.addToast(text);
+    const text: string = this.getCustomToast(title, message, "info");
+    this.addToast(text);
   }
 
   public showWarning(title: string, message: string) {
-    var text: string = this.getCustomToast(title, message, "warning");
-    var toast: any = this.addToast(text);
+    const text: string = this.getCustomToast(title, message, "warning");
+    this.addToast(text);
   }
 
   public showError(title: string, message: string) {
-    var text: string = this.getCustomToast(title, message, "error");
-    var toast: any = this.addToast(text);
+    const text: string = this.getCustomToast(title, message, "error");
+    this.addToast(text);
   }
 
   private getCustomToast(title: string, message: string, type: string): string {
-    var text: string =
-      '<div class="dj-toast"><div class="dj-toast-icon-' + type + '"></div>' +
+    const text: string =
+      '<div class="dj-toast-icon-' + type + '"></div>' +
       '<div class="dj-toast-text"><div class="dj-toast-title">' +
       title + '</div><div class="dj-toast-message">' +
-      message + '</div></div></div>';
+      message + '</div></div>';
     return text;
   }
 
   private addToast(toastHtml: string): any {
 
-    var _this = this;
+    const _this = this;
 
-    var container: any = this.getContainer();
-    var toast: any = $(toastHtml);
-    toast.hide();
-    toast.appendTo(container);
+    const container: any = this.getContainer();
+    const toast: any = document.createElement('div');
+    toast.className = 'dj-toast hide'
+    toast.innerHTML = toastHtml
+    container.append(toast)
 
     // Add close button
-    var closeBtn: any = $('<div class="dj-toast-icon-close"></div>');
-    closeBtn.appendTo(toast);
+    const closeBtn: any = document.createElement('div');
+    closeBtn.className = 'dj-toast-icon-close'
+    toast.append(closeBtn)
 
-    closeBtn.on("pointerdown", function () {
+    closeBtn.addEventListener("click", () => {
       _this.removeToast(toast)
     });
-    setTimeout(function () {
+    setTimeout(() => {
       _this.removeToast(toast)
     }, _this.duration);
 
-    toast.fadeIn(Toast.FADE_MS);
+    setTimeout(() => {
+      toast.classList.add('show');
+      toast.classList.remove('hide');
+    }, Toast.FADE_MS)
 
     return toast;
   }
 
   private getContainer(): any {
+    const container = document.querySelector(".dj-toast-container")
+    if (!!container) return container;
 
-    if ($(".dj-toast-container").length == 0) {
-      // Container doesn't exist
-      this.parent.append("<div class=\"dj-toast-container\"></div>");
-    }
-
-    return $(".dj-toast-container");
+    // Container doesn't exist
+    const newContainer = document.createElement('div')
+    newContainer.className = 'dj-toast-container'
+    this.parent.append(newContainer);
+    return newContainer
   }
 
   private removeToast(toast: any) {
 
-    toast.fadeOut(Toast.FADE_MS, function () {
-        toast.remove();
-      }
-    );
+    toast.classList.add('hide');
+    toast.classList.remove('show');
+
+    setTimeout(() => {
+      toast.remove();
+    }, Toast.FADE_MS)
   }
 }

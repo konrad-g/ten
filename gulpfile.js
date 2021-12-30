@@ -11,7 +11,7 @@ const versionNumber = Math.random().toString(36).substring(8);
 
 gulp.task('clean', () => {
   // Clean output folder
-  return gulp.src(OUTPIT_FOLDER_PATH, {read: false})
+  return gulp.src(OUTPIT_FOLDER_PATH, { read: false, allowEmpty: true })
     .pipe(clean({force: true}));
 });
 

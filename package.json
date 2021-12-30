@@ -7,6 +7,7 @@
   "scripts": {
     "start": "nodemon --exec \"ts-node\" -- \"src/server/app/BootDev.ts\"",
     "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
+    "build-client": "gulp build-client",
     "test-all": "npm run test-server && npm run test-client",
     "test-client": "karma start karma.conf.js",
     "test-server": "mocha -r ts-node/register test/server/**/*.ts"

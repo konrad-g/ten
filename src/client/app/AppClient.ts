@@ -1,4 +1,5 @@
-import "./stylesheets/style.scss"
+import { Toast } from "./../elements/toast/Toast"
+import "./styles/style.scss"
 
 class AppClient {
 
