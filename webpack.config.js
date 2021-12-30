@@ -1,11 +1,12 @@
 'use strict';
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: './src/client/app/AppClient.ts',
-  mode: 'development',
+  mode: 'production',
   plugins: [new MiniCssExtractPlugin({
     filename: "[name].css",
   })],
@@ -39,6 +40,13 @@ module.exports = {
         ]
       },
     ]
+  },
+  optimization: {
+    minimizer: [
+      '...',
+      new CssMinimizerPlugin(),
+    ],
+    minimize: true,
   },
   resolve: {
     extensions: [ '.ts', '.tsx', '.js' ],
