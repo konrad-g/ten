@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/client/app/AppClient.ts',
   mode: 'production',
   plugins: [new MiniCssExtractPlugin({
-    filename: "[name].css",
+    filename: "[name].css"
   })],
   module: {
     rules: [
@@ -38,15 +38,14 @@ module.exports = {
             }
           }
         ]
-      },
+      }
     ]
   },
   optimization: {
     minimizer: [
       '...',
-      new CssMinimizerPlugin(),
-    ],
-    minimize: true,
+      new CssMinimizerPlugin()
+    ]
   },
   resolve: {
     extensions: [ '.ts', '.tsx', '.js' ],

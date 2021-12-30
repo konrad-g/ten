@@ -15,6 +15,17 @@ gulp.task('clean', () => {
     .pipe(clean({force: true}));
 });
 
+gulp.task('compile-client-dev', () => {
+  return gulp.src('src/client/app/AppClient.ts')
+    .pipe(webpack({
+      config: {
+        ...require('./webpack.config.js'),
+        mode: "development"
+      }
+    }))
+    .pipe(gulp.dest(OUTPIT_FOLDER_PATH + '/'));
+});
+
 gulp.task('compile-client', () => {
   return gulp.src('src/client/app/AppClient.ts')
     .pipe(webpack({
@@ -41,3 +52,4 @@ gulp.task('add-imports', (done) => {
 });
 
 gulp.task('build-client', gulp.series('clean', 'compile-client', 'add-imports')) 
+gulp.task('build-client-dev', gulp.series('clean', 'compile-client-dev', 'add-imports')) 

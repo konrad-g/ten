@@ -1,8 +1,8 @@
 import "./styles/main.scss"
 
 export class Toast {
-  private static FADE_MS = 400
-  private REMOVE_TIME_MS = 10000
+  private static FADE_MS = 200
+  private REMOVE_TIME_MS = 4000
 
   private parent: any
   private duration
