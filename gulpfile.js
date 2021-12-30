@@ -1,9 +1,8 @@
 const gulp = require('gulp');
-const runSequence = require('gulp-run-sequence');
+const fs = require("fs");
+const clean = require('gulp-clean');
 
 /*
-var fs = require("fs");
-var clean = require('gulp-clean');
 var uglify = require('gulp-uglify');
 var cleanCSS = require('gulp-clean-css');
 var concatJs = require('gulp-concat');
@@ -18,10 +17,10 @@ var watch = require('gulp-watch');
 
 const webpack = require('webpack-stream');
 
-var OUTPIT_FOLDER_PATH = './dist';
+const OUTPIT_FOLDER_PATH = './dist';
+const VIEW_SCRIPTS_PATH = 'src/server/elements/pages/base/views/scripts.hbs';
+const VIEW_STYLES_PATH = 'src/server/elements/pages/base/views/styles.hbs';
 /*
-var VIEW_SCRIPTS_PATH = 'src/server/elements/pages/base/views/scripts.hbs';
-var VIEW_STYLES_PATH = 'src/server/elements/pages/base/views/styles.hbs';
 var TRANSPILE_TYPESCRIPT_PATH = './src/client/';
 var TRANSPILE_SCSS_PATH = './src/';
 */
@@ -49,12 +48,6 @@ var IMPORT_SCRIPTS = [
   "./src/client/app/AppClient.js"
 ];
 */
-
-gulp.task('clean', function () {
-  // Clean output folder
-  return gulp.src(OUTPIT_FOLDER_PATH, {read: false})
-    .pipe(clean({force: true}));
-});
 
 /*
 gulp.task('minimize-js', function () {
@@ -118,33 +111,35 @@ var typescriptProject = typescript.createProject({
 //     .pipe(gulp.dest(TRANSPILE_SCSS_PATH));
 // });
 
-gulp.task('compile-client', function () {
+gulp.task('clean', () => {
+  // Clean output folder
+  return gulp.src(OUTPIT_FOLDER_PATH, {read: false})
+    .pipe(clean({force: true}));
+});
+
+gulp.task('compile-client', () => {
   return gulp.src('src/client/app/AppClient.ts')
     .pipe(webpack({
-      config: {
-        ...require('./webpack.config.js'),
-        output: {
-          filename: 'app-' + versionNumber + '.js',
-          publicPath: OUTPIT_FOLDER_PATH + '/',
-          libraryTarget: 'umd'
-        }
-      }
+      config: require('./webpack.config.js'),
     }))
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH + '/'));
 });
 
 // Generating scripts and styles imports
-gulp.task('add-single-imports', function () {
+gulp.task('add-single-imports', (done) => {
+
+  fs.renameSync(OUTPIT_FOLDER_PATH + '/main.js', OUTPIT_FOLDER_PATH + '/scripts-' + versionNumber + '.min.js')
+  fs.renameSync(OUTPIT_FOLDER_PATH + '/main.css', OUTPIT_FOLDER_PATH + '/styles-' + versionNumber + '.min.css')
 
   // Update scripts import
-  require('fs').writeFileSync(VIEW_SCRIPTS_PATH,
+  fs.writeFileSync(VIEW_SCRIPTS_PATH,
     "<script src=\"/dist/scripts-" + versionNumber + ".min.js\"></script>");
 
   // Update styles import
-  require('fs').writeFileSync(VIEW_STYLES_PATH,
-    "<link rel=\"stylesheet\" href=\"/dist/styles-" + versionNumber + ".min.css\" rel=\"stylesheet\" type=\"text/css\" />");
+  fs.writeFileSync(VIEW_STYLES_PATH,
+    "<link rel=\"stylesheet\" href=\"/dist/styles-" + versionNumber + ".min.css\" rel=\"stylesheet\" type=\"text/css\" />")
 
-  return;
+  done()
 });
 
 /*
@@ -179,7 +174,4 @@ gulp.task('dev', function () {
 /**
  * Build production project
  */
-gulp.task('prod', () => {
-  runSequence(
-    'clean', 'compile-client', 'add-single-imports');
-});
+gulp.task('prod', gulp.series('clean', 'compile-client', 'add-single-imports')) 

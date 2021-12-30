@@ -1,10 +1,14 @@
 'use strict';
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: './src/client/app/AppClient.ts',
   mode: 'development',
+  plugins: [new MiniCssExtractPlugin({
+    filename: "[name].css",
+  })],
   module: {
     rules: [
       {
@@ -17,7 +21,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
         ],
@@ -33,7 +37,7 @@ module.exports = {
             }
           }
         ]
-      }
+      },
     ]
   },
   resolve: {
@@ -41,7 +45,7 @@ module.exports = {
     modules: [path.resolve(__dirname, 'node_modules'), 'node_modules']
   },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     publicPath: '/dist/',
     libraryTarget: 'umd'
   }
