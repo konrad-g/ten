@@ -1,12 +1,12 @@
 import { IPageMain } from "../pages/main/IPageMain"
 
-var express = require("express")
-var path = require("path")
-var favicon = require("serve-favicon")
-var logger = require("morgan")
-var cookieParser = require("cookie-parser")
-var bodyParser = require("body-parser")
-var hbs = require("hbs")
+const express = require("express")
+const path = require("path")
+const favicon = require("serve-favicon")
+const logger = require("morgan")
+const cookieParser = require("cookie-parser")
+const bodyParser = require("body-parser")
+const hbs = require("hbs")
 
 export class ServerListener implements IPageMain {
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png"
@@ -31,13 +31,10 @@ export class ServerListener implements IPageMain {
     this.express.use("/client-libs", express.static(path.join(__dirname, "../../../../client-libs")))
   }
 
-  public registerPage(page: any) {
-    var viewsPath = path.join(page.getPath(), "/views")
+  public addViewPath(viewsPath: string) {
     this.expressViews.push(viewsPath)
     this.express.set("views", this.expressViews)
     hbs.registerPartials(viewsPath)
-    this.express.use("/stylesheets", express.static(path.join(page.getPath(), "stylesheets")))
-    this.express.use("/assets", express.static(path.join(page.getPath(), "stylesheets")))
   }
 
   renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) {

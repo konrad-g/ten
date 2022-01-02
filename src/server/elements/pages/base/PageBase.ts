@@ -6,7 +6,7 @@ export class PageBase {
   public constructor() {
     // Handle errors
     this.errorsRouter.use(function (req, res, next) {
-      var err: any = new Error("Not Found")
+      const err: any = new Error("Not Found")
       err.status = 404
       next(err)
     })

@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "esModuleInterop": true,
+    "module": "CommonJS",
     "target": "es3",
     "noImplicitAny": false,
     "sourceMap": false,
+    "strict": true, 
+    "forceConsistentCasingInFileNames": true,
     "typeRoots": [
       "node_modules/@types"
     ]
-  }
+  },
 }

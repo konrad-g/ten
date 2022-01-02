@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Server } from "../elements/server/Server"
 
-var isProduction = true
-var mainApp = new Server(isProduction)
+const isProduction = true
+const mainApp = new Server(isProduction)
 mainApp.start()

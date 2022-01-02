@@ -1,6 +1,6 @@
-import { PageMain } from "./PageMain";
+import { PageMain } from "../main/PageMain";
 
-export interface IPageMain {
+export interface IPageContactUs {
   renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean)
   addViewPath(viewsPath: string)
 }

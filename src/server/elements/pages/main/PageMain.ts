@@ -1,30 +1,28 @@
-import * as express from "express"
+import autoBind from "auto-bind"
 import { IPageMain } from "./IPageMain"
+import * as path from 'path';
 
 export class PageMain {
   TITLE: string = "TEN stack"
   DESCRIPTION: string = "Starter app for TEN stack: TypeScript + Express + Node.js"
   KEYWORDS: string = "node.js,ten"
   DISABLE_INDEXING: boolean = false
-  VIEW: string = "view-page-main"
+  VIEW: string = "main"
 
   listener: IPageMain
-  router = express.Router()
+
+  public static render(listener: IPageMain): Function {
+    const page = new PageMain(listener);
+    return page.render
+  }
 
   public constructor(listener: IPageMain) {
+    autoBind(this)
     this.listener = listener
-    var self = this
-
-    this.router.get("/", function (req, res, next) {
-      listener.renderPage(res, self.VIEW, self.TITLE, self.DESCRIPTION, self.KEYWORDS, self.DISABLE_INDEXING)
-    })
+    this.listener.addViewPath(path.join(__dirname, path.sep + "views"));
   }
 
-  getRouter(): express.Router {
-    return this.router
-  }
-
-  getPath(): string {
-    return __dirname
+  render(req, res, next) {
+    this.listener.renderPage(res, this.VIEW, this.TITLE, this.DESCRIPTION, this.KEYWORDS, this.DISABLE_INDEXING)
   }
 }

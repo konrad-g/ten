@@ -5,7 +5,7 @@
   "author": "Konrad Gadzinowski <kgadzinowski@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch src --watch test --ext ts,tsx,js,scss,css --exec 'gulp build-client-dev && \"ts-node\" -- \"src/server/app/BootDev.ts\"'",
+    "start": "nodemon --watch src --watch test --ext ts,tsx,js,scss,css --exec '\"ts-node\" -- \"src/server/app/BootDev.ts\"'",
     "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
     "build-client": "gulp build-client",
     "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
@@ -14,6 +14,7 @@
     "test-server": "mocha -r ts-node/register test/server/**/*.ts"
   },
   "dependencies": {
+    "auto-bind": "^5.0.1",
     "body-parser": "~1.19.1",
     "cookie-parser": "~1.4.6",
     "css-loader": "^6.5.1",
