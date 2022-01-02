@@ -7,17 +7,17 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-    plugins: ['karma-jsdom-launcher', 'karma-coverage', 'karma-jasmine', 'karma-junit-reporter', 'karma-spec-reporter', 'karma-htmlfile-reporter', 'karma-typescript'],
+    plugins: ['karma-jsdom-launcher', 'karma-coverage', 'karma-jasmine', 'karma-junit-reporter', 'karma-spec-reporter', 'karma-htmlfile-reporter', "karma-typescript"],
 
       // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', "karma-typescript"],
 
 
     // list of files / patterns to load in the browser
     files: [
       'src/client/**/*.ts',
-      'test/client/**/*.js'
+      'test/client/**/*.ts'
     ],
 
     // list of files to exclude
@@ -28,30 +28,23 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      "src/client/**/*.ts": "karma-typescript" // *.tsx for React Jsx
+      "**/*.ts": "karma-typescript" // *.tsx for React Jsx
     },
 
-    typescriptPreprocessor: {
-      // options passed to the typescript compiler
-      options: {
-        sourceMap: false, // (optional) Generates corresponding .map file.
-        target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5'
-        module: 'amd', // (optional) Specify module code generation: 'commonjs' or 'amd'
-        noImplicitAny: true, // (optional) Warn on expressions and declarations with an implied 'any' type.
-        noResolve: true, // (optional) Skip resolution and preprocessing.
-        removeComments: true, // (optional) Do not emit comments to output.
-        concatenateOutput: false // (optional) Concatenate and emit output to single file. By default true if module option is omited, otherwise false.
+    karmaTypescriptConfig: {
+      compilerOptions: {
+          module: "umd",
+          sourceMap: true,
+          target: "ES6",
+          moduleResolution: "node"
       },
-      // transforming the filenames
-      transformPath: function(path) {
-        return path.replace(/\.ts$/, '.js');
-      }
+      exclude: ["node_modules"]
     },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: [],
+    reporters: ['spec', 'html', "karma-typescript"],
 
     htmlReporter: {
         outputFile: 'test/results.html'

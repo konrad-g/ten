@@ -54,6 +54,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     publicPath: '/dist/',
-    libraryTarget: 'umd'
+    libraryTarget: 'var',
+    library: 'app'
   }
 };

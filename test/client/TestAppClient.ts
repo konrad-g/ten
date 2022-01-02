@@ -1,5 +1,8 @@
+import { expect } from "chai";
+import { AppClient } from "../../src/client/app/AppClient";
+
 describe("AppClient", () => {
-  let app
+  let appClient
   let toastBtn
 
   beforeEach(function () {
@@ -10,13 +13,12 @@ describe("AppClient", () => {
     document.body.append(toastBtn)
 
     // Init client
-    app = new AppClient()
-    app.start()
+    appClient = new AppClient()
+    appClient.start()
   })
 
   afterEach(function () {
-    app = null
-    bodyView = null
+    appClient = null
     toastBtn = null
   })
 
@@ -26,7 +28,7 @@ describe("AppClient", () => {
     toastBtn.eq(0).trigger("click")
 
     // Then toast appears
-    var toasts = document.body.querySelector(".dj-toast")
-    expect(toasts.length).not.toBe(0)
+    var toasts = document.body.querySelectorAll(".dj-toast")
+    expect(toasts.length).not.eq(0)
   })
 })

@@ -1,7 +1,7 @@
 import { Toast } from "./../elements/toast/Toast"
 import "./styles/style.scss"
 
-class AppClient {
+export class AppClient {
   initiated = false
   toastLogger: Toast
 
