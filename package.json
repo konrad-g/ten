@@ -11,8 +11,7 @@
     "build-client-dev": "gulp build-client-dev",
     "dev-client": "gulp dev-client",
     "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
-    "test-all": "npm run test-server && npm run test-client",
-    "test-server": "mocha -r ts-node/register test/server/**/*.ts",
+    "test-server": "mocha -r ts-node/register src/server/**/*.test.ts",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
