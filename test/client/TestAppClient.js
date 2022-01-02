@@ -1,13 +1,13 @@
-describe("AppClient", function () {
-  var app
-  var bodyView
-  var toastBtn
+describe("AppClient", () => {
+  let app
+  let toastBtn
 
   beforeEach(function () {
     // Set view
-    bodyView = $(document.body)
-    toastBtn = $("<button id='showToast'>Show toast</button>")
-    bodyView.append(toastBtn)
+    toastBtn = document.createElement("button");
+    toastBtn.id = "showToast"
+    toastBtn.innerHTML = "Show toast"
+    document.body.append(toastBtn)
 
     // Init client
     app = new AppClient()
@@ -26,7 +26,7 @@ describe("AppClient", function () {
     toastBtn.eq(0).trigger("click")
 
     // Then toast appears
-    var toasts = $(bodyView).find(".dj-toast")
+    var toasts = document.body.querySelector(".dj-toast")
     expect(toasts.length).not.toBe(0)
   })
 })
