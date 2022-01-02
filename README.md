@@ -21,7 +21,7 @@
   
 ## Run tests
 Run all tests: `npm run test-all`  
-Run client tests: `npm run test-client`  
+Run client Storybook tests: `npm run storybook`  
 Run server tests: `npm run test-server` 
   
 Client tests configuration is in `karma.conf.js`  
