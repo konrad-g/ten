@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { describe } from "mocha";
 import { AppClient } from "../../src/client/app/AppClient";
 
 describe("AppClient", () => {

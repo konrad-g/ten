@@ -22,6 +22,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+      'node_modules',
+      'src/server'
     ],
 
 
@@ -35,10 +37,10 @@ module.exports = function(config) {
       compilerOptions: {
           module: "umd",
           sourceMap: true,
-          target: "ES6",
-          moduleResolution: "node"
+          target: "ES5",
+          moduleResolution: "node",
       },
-      exclude: ["node_modules"]
+      exclude: ["node_modules", "src/server"]
     },
 
     // test results reporter to use
