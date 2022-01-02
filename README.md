@@ -26,22 +26,17 @@ Run server tests: `npm run test-server`
   
 Client tests configuration is in `karma.conf.js`  
 
-
 ## Create development dependencies
-`gulp dev`
+`npm run build-client-dev`  
 
 ## Create minimised production dependencies
-`gulp prod`
+`npm run build-client`  
 
-## Watch TypeScript and SCSS changes
-`gulp watch-ts-scss`
+## Watch client files changes
+`npm run dev-client`
 
 ## To automatically format code  
 `npm run format-code`  
-
-## Transpile client TypeScript and all SCSS  
-`gulp transpile-client-ts`  
-`gulp transpile-all-scss`  
 
 ## Style and scripts imports
 Put all imports you want to use in `gulpfile.js`. Then simply run `gulp dev` or `gulp prod`.  

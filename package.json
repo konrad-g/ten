@@ -8,6 +8,8 @@
     "start": "nodemon --watch src --watch test --ext ts,tsx,js,scss,css --exec '\"ts-node\" -- \"src/server/app/BootDev.ts\"'",
     "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
     "build-client": "gulp build-client",
+    "build-client-dev": "gulp build-client-dev",
+    "dev-client": "gulp dev-client",
     "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
     "test-all": "npm run test-server && npm run test-client",
     "test-client": "karma start karma.conf.js",
@@ -28,8 +30,7 @@
     "serve-favicon": "~2.5.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.4",
-    "webpack-stream": "^7.0.0"
+    "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
@@ -41,7 +42,6 @@
     "css-minimizer-webpack-plugin": "^3.3.1",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
-    "gulp-livereload": "^4.0.2",
     "gulp-nodemon": "^2.5.0",
     "jasmine-core": "^3.10.1",
     "karma": "^6.3.9",
@@ -59,6 +59,7 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "webpack-stream": "^7.0.0"
   }
 }

@@ -2,8 +2,6 @@ const gulp = require('gulp');
 const fs = require("fs");
 const clean = require('gulp-clean');
 const webpack = require('webpack-stream');
-const nodemon = require('gulp-nodemon');
-const livereload = require('gulp-livereload');
 
 const OUTPIT_FOLDER_PATH = './dist';
 const VIEW_SCRIPTS_PATH = 'src/server/elements/pages/base/views/scripts.hbs';
@@ -53,24 +51,9 @@ gulp.task('add-imports', (done) => {
   done()
 });
 
-
-gulp.task('sync', (done) => {
-  nodemon({
-    watch: ['./src', './test'],
-    ext: 'ts,tsx,js,scss,css',
-    exec: 'gulp build-client-dev && \"ts-node\" -- \"src/server/app/BootDev.ts\"',
-    env: { 'NODE_ENV': 'development' }
-  }).on('start', () => {
-    livereload.listen();
-    done()
-  });
-  gulp.watch(['./dist/**/*', './src/**/*']).on("change", () => {
-    livereload.reload()
-    console.log('Reload!')
-  });
-});
-
 gulp.task('build-client', gulp.series('clean', 'compile-client', 'add-imports')) 
 gulp.task('build-client-dev', gulp.series('clean', 'compile-client-dev', 'add-imports')) 
-
-gulp.task('dev', gulp.parallel('sync'));
+gulp.task('watch-client', (done) => {
+  gulp.watch(['./src/client/**/*', './test/client/**/*'], gulp.series(['build-client-dev']))
+});
+gulp.task('dev-client', gulp.series('build-client-dev', 'watch-client'));
