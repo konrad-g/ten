@@ -1,5 +1,7 @@
 import { Toast } from "./../elements/toast/Toast"
 import "./styles/style.scss"
+import "./../../../client-libs/node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "./../../../client-libs/node_modules/bootstrap/dist/js/bootstrap.min.js"
 
 export class AppClient {
   initiated = false
