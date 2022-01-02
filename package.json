@@ -5,7 +5,7 @@
   "author": "Konrad Gadzinowski <kgadzinowski@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch src --watch test --ext ts,tsx,js,scss,css --exec '\"ts-node\" -- \"src/server/app/BootDev.ts\"'",
+    "start": "nodemon --watch src --watch dist --watch test --ext ts,tsx,js,scss,css --exec '\"ts-node\" -- \"src/server/app/BootDev.ts\"'",
     "start-prod": "\"ts-node\" \"./src/server/app/BootProd.ts\"",
     "build-client": "gulp build-client",
     "build-client-dev": "gulp build-client-dev",

@@ -20,7 +20,8 @@ gulp.task('compile-client-dev', () => {
     .pipe(webpack({
       config: {
         ...require('./webpack.config.js'),
-        mode: "development"
+        mode: "development",
+        devtool: 'inline-source-map',
       }
     }))
     .pipe(gulp.dest(OUTPIT_FOLDER_PATH + '/'));

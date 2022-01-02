@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  devtool: 'inline-source-map',
   entry: './src/client/app/AppClient.ts',
   mode: 'production',
   plugins: [new MiniCssExtractPlugin({
@@ -54,7 +53,6 @@ module.exports = {
   output: {
     filename: '[name].js',
     publicPath: '/dist/',
-    libraryTarget: 'var',
-    library: 'app'
+    libraryTarget: 'umd'
   }
 };
