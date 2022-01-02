@@ -1,4 +1,3 @@
-import autoBind from "auto-bind"
 import { IPageMain } from "./IPageMain"
 import * as path from 'path';
 
@@ -17,12 +16,11 @@ export class PageMain {
   }
 
   public constructor(listener: IPageMain) {
-    autoBind(this)
     this.listener = listener
     this.listener.addViewPath(path.join(__dirname, path.sep + "views"));
   }
 
-  render(req, res, next) {
+  render = (req, res, next) => {
     this.listener.renderPage(res, this.VIEW, this.TITLE, this.DESCRIPTION, this.KEYWORDS, this.DISABLE_INDEXING)
   }
 }

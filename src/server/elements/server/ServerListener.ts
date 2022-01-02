@@ -16,7 +16,7 @@ export class ServerListener implements IPageMain {
 
   constructor() {}
 
-  init() {
+  init = () => {
     // view engine setup
     this.express.set("view engine", "hbs")
     this.express.use(favicon(path.join(__dirname, this.FAVICON_PATH)))
@@ -37,7 +37,7 @@ export class ServerListener implements IPageMain {
     hbs.registerPartials(viewsPath)
   }
 
-  renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) {
+  renderPage = (res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) => {
     res.render(viewName, {
       title: title,
       description: description,

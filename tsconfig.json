@@ -9,6 +9,8 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "types": ["node"],
+    "lib": ["ES2017"]
   },
 }

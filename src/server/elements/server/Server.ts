@@ -1,6 +1,7 @@
 import { ServerListener } from "./ServerListener"
 import cluster from "cluster"
 import { App } from "../../app/main/App"
+import { PageBase } from "../pages/base/PageBase"
 
 export class Server {
   port
@@ -16,7 +17,7 @@ export class Server {
     this.appListener.init()
   }
 
-  start() {
+  start = () => {
     const self = this
 
     self.port = self.normalizePort(process.env.PORT || "3000")
@@ -51,18 +52,21 @@ export class Server {
     }
 
     // Run app
-    const app = new App(this.getExpress(), self.appListener)
+    const app = new App(self.getExpress(), self.appListener)
     app.setupRoutes()
+
+    const pageBase = new PageBase(self.getExpress(), self.appListener)
+    pageBase.setup()
   }
 
-  getExpress() {
+  getExpress = () => {
     return this.appListener.express
   }
 
   /**
    * Normalize a port into a number, string, or false.
    */
-  normalizePort(val) {
+  normalizePort = (val) => {
     const port = parseInt(val, 10)
 
     if (isNaN(port)) {
@@ -81,7 +85,7 @@ export class Server {
   /**
    * Event listener for HTTP server "error" event.
    */
-  onError(error) {
+  onError = (error) => {
     if (error.syscall !== "listen") {
       throw error
     }
@@ -106,7 +110,7 @@ export class Server {
   /**
    * Event listener for HTTP server "listening" event.
    */
-  onListening() {
+  onListening = () => {
     const addr = this.server.address()
     const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port
     this.debug("Listening on " + bind)

@@ -12,7 +12,7 @@ export class App {
     this.listener = listener
   }
 
-  setupRoutes() {
+  setupRoutes = () => {
     this.router.get("/", PageMain.render(this.listener))
     this.router.get("/contact-us", PageContactUs.render(this.listener))
   }
