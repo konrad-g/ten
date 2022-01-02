@@ -3,6 +3,8 @@ import cluster from "cluster"
 import { App } from "../../app/main/App"
 import { PageBase } from "../pages/base/PageBase"
 import debug from 'debug';
+import livereload from 'livereload';
+import connectLiveReload from 'connect-livereload';
 import * as http from 'http';
 import * as os from 'os';
 
@@ -21,14 +23,26 @@ export class Server {
 
   start = () => {
     const self = this
-
+    const appExpress = self.getExpress()
     self.port = self.normalizePort(process.env.PORT || "3000")
-    self.getExpress().set("port", self.port)
+    appExpress.set("port", self.port)
 
-    self.server = http.createServer(self.getExpress())
+    self.server = http.createServer(appExpress)
+
+    if (!this.isProduction) {
+      // Automatically refresh page when server reboots
+      appExpress.use(connectLiveReload());
+      const liveReloadServer = livereload.createServer();
+      liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+          liveReloadServer.refresh("/");
+        }, 100);
+      });
+    }
 
     // Use multi-core on production
     if (self.isProduction && cluster.isPrimary) {
+
       console.log("Main cluster setting up " + self.numCPUs + " workers...")
       for (let i = 0; i < self.numCPUs; i++) {
         cluster.fork()
@@ -54,10 +68,10 @@ export class Server {
     }
 
     // Run app
-    const app = new App(self.getExpress(), self.appListener)
+    const app = new App(appExpress, self.appListener)
     app.setupRoutes()
 
-    const pageBase = new PageBase(self.getExpress(), self.appListener)
+    const pageBase = new PageBase(appExpress, self.appListener)
     pageBase.setup()
   }
 

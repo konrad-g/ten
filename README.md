@@ -32,7 +32,7 @@ Client tests configuration is in `karma.conf.js`
 ## Create minimised production dependencies
 `npm run build-client`  
 
-## Watch client files changes
+## Watch client files, and rebuild them on change  
 `npm run dev-client`
 
 ## To automatically format code  
@@ -42,6 +42,19 @@ Client tests configuration is in `karma.conf.js`
 Put all imports you want to use in `gulpfile.js`. Then simply run `gulp dev` or `gulp prod`.  
 In development mode you will get all your imports as separate entries so they will be easy to debug.  
 In production mode all your imports will be put together and minified to single .js and .css file so that they are as small as possible and fast to load.
+
+## The best way to develop
+Open two terminal windows, in one, start development server with:  
+`npm run start`  
+  
+In another, start rebuilding client files on change:  
+`npm run dev-client`  
+  
+Now open your app in a browser and start developing. The app will automatically refresh on any changes.  
+
+## To deploy to production
+1. Build production client files with: `npm run build-client`  
+2. Start the app in production mode with: `npm run start-prod`. You can for example use [forever](https://github.com/foreversd/forever), in order to run it continuously.  
 
 ## Architecture
 Both client and server consist of modular structure.  

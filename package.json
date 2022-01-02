@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "body-parser": "~1.19.1",
+    "connect-livereload": "^0.6.1",
     "cookie-parser": "~1.4.6",
     "css-loader": "^6.5.1",
     "debug": "~4.3.3",
@@ -24,6 +25,7 @@
     "gulp-run-sequence": "^0.3.2",
     "hbs": "~4.2.0",
     "less": "^4.1.2",
+    "livereload": "^0.9.3",
     "morgan": "~1.10.0",
     "sass": "^1.45.1",
     "sass-loader": "^12.4.0",
