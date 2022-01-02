@@ -1,5 +1,5 @@
 import { expect } from "chai"
-import { Server } from "./Server"
+import { Server } from "../../../../src/server/elements/server/Server"
 
 describe("AppServer", function () {
   var app
