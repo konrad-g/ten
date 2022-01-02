@@ -2,13 +2,15 @@ import { ServerListener } from "./ServerListener"
 import cluster from "cluster"
 import { App } from "../../app/main/App"
 import { PageBase } from "../pages/base/PageBase"
+import debug from 'debug';
+import * as http from 'http';
+import * as os from 'os';
 
 export class Server {
   port
   server
-  debug = require("debug")("final:server")
-  http = require("http")
-  numCPUs = require("os").cpus().length
+  debug = debug("final:server")
+  numCPUs = os.cpus().length
   isProduction: boolean
   appListener: ServerListener = new ServerListener()
 
@@ -23,7 +25,7 @@ export class Server {
     self.port = self.normalizePort(process.env.PORT || "3000")
     self.getExpress().set("port", self.port)
 
-    self.server = self.http.createServer(self.getExpress())
+    self.server = http.createServer(self.getExpress())
 
     // Use multi-core on production
     if (self.isProduction && cluster.isPrimary) {

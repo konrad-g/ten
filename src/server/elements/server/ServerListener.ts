@@ -1,12 +1,11 @@
 import { IPageMain } from "../pages/main/IPageMain"
-
-const express = require("express")
-const path = require("path")
-const favicon = require("serve-favicon")
-const logger = require("morgan")
-const cookieParser = require("cookie-parser")
-const bodyParser = require("body-parser")
-const hbs = require("hbs")
+import express from 'express';
+import * as path from 'path';
+import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import hbs from 'hbs';
 
 export class ServerListener implements IPageMain {
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png"
