@@ -1,4 +1,5 @@
 import { Toast } from "./../elements/toast/Toast"
+import Pjax from "./../../../client-libs/node_modules/pjax"
 import "./styles/style.scss"
 import "./../../../client-libs/node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "./../../../client-libs/node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -16,6 +17,7 @@ export class AppClient {
     const self = this
 
     self.toastLogger = new Toast(document.body)
+    let pjax = new Pjax()
 
     document.querySelector("#showToast").addEventListener("click", () => {
       const results = 5

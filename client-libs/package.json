@@ -5,6 +5,7 @@
   "author": "Konrad Gadzinowski <kgadzinowski@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "pjax": "^0.2.8"
   }
 }
