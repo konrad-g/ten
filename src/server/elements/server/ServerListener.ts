@@ -43,7 +43,6 @@ export class ServerListener implements IPageMain {
       description: description,
       keywords: keywords,
       disableIndexing: disableIndexing,
-      layout: "layout"
     })
   }
 

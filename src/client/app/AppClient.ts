@@ -17,7 +17,13 @@ export class AppClient {
     const self = this
 
     self.toastLogger = new Toast(document.body)
-    let pjax = new Pjax()
+
+    const pjax = new Pjax({selectors: ['main']})
+
+    // Example: https://github.com/MoOx/pjax/blob/master/example/example.js
+    document.addEventListener("pjax:send", function() {
+      console.log("Event: pjax:send", arguments);
+    });
 
     document.querySelector("#showToast").addEventListener("click", () => {
       const results = 5
