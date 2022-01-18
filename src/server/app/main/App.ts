@@ -13,6 +13,15 @@ export class App {
   }
 
   setupRoutes = () => {
+
+    // TODO
+    /*
+      - Add pjax
+      - Add per page logic
+      - Fix all tests, add storybook
+      - Clean up code
+    */
+
     this.router.get("/", PageMain.render(this.listener))
     this.router.get("/contact-us", PageContactUs.render(this.listener))
   }
