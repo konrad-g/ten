@@ -16,6 +16,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@storybook/builder-webpack5": "^6.4.9",
+    "@storybook/manager-webpack5": "^6.4.9",
     "body-parser": "~1.19.1",
     "connect-livereload": "^0.6.1",
     "cookie-parser": "~1.4.6",

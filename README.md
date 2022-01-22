@@ -9,7 +9,8 @@
 ## How to install
 `npm install -g gulp`  
 `npm install`  
-`bower install`
+`cd client-libs`
+`npm install`
 
 ## Start application in development mode  
 
@@ -20,7 +21,6 @@
 `npm run start-prod`  
   
 ## Run tests
-Run all tests: `npm run test-all`  
 Run client Storybook tests: `npm run storybook`  
 Run server tests: `npm run test-server` 
   
@@ -57,8 +57,8 @@ Now open your app in a browser and start developing. The app will automatically 
 2. Start the app in production mode with: `npm run start-prod`. You can for example use [forever](https://github.com/foreversd/forever), in order to run it continuously.  
 
 ## Architecture
-Both client and server consist of modular structure.  
-That means certain folder order:
+All client libraries are located in `client-libs`.  
+Both client and server consist of modular structure. That means certain folder order:  
 
 ```
 src/  
