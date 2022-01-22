@@ -12,27 +12,27 @@ export class Toast {
     this.duration = this.REMOVE_TIME_MS
   }
 
-  public showSuccess(title: string, message: string) {
+  public showSuccess = (title: string, message: string) => {
     const text: string = this.getCustomToast(title, message, "success")
     this.addToast(text)
   }
 
-  public showInfo(title: string, message: string) {
+  public showInfo = (title: string, message: string) => {
     const text: string = this.getCustomToast(title, message, "info")
     this.addToast(text)
   }
 
-  public showWarning(title: string, message: string) {
+  public showWarning = (title: string, message: string) => {
     const text: string = this.getCustomToast(title, message, "warning")
     this.addToast(text)
   }
 
-  public showError(title: string, message: string) {
+  public showError = (title: string, message: string) => {
     const text: string = this.getCustomToast(title, message, "error")
     this.addToast(text)
   }
 
-  private getCustomToast(title: string, message: string, type: string): string {
+  private getCustomToast = (title: string, message: string, type: string): string => {
     const text: string =
       '<div class="dj-toast-icon-' +
       type +
@@ -45,9 +45,7 @@ export class Toast {
     return text
   }
 
-  private addToast(toastHtml: string): any {
-    const self = this
-
+  private addToast = (toastHtml: string): any => {
     const container: any = this.getContainer()
     const toast: any = document.createElement("div")
     toast.className = "dj-toast hide"
@@ -60,11 +58,11 @@ export class Toast {
     toast.append(closeBtn)
 
     closeBtn.addEventListener("click", () => {
-      self.removeToast(toast)
+      this.removeToast(toast)
     })
     setTimeout(() => {
-      self.removeToast(toast)
-    }, self.duration)
+      this.removeToast(toast)
+    }, this.duration)
 
     setTimeout(() => {
       toast.classList.add("show")
@@ -74,7 +72,7 @@ export class Toast {
     return toast
   }
 
-  private getContainer(): any {
+  private getContainer = (): any => {
     const container = document.querySelector(".dj-toast-container")
     if (!!container) return container
 
@@ -85,7 +83,7 @@ export class Toast {
     return newContainer
   }
 
-  private removeToast(toast: any) {
+  private removeToast = (toast: any) => {
     toast.classList.add("hide")
     toast.classList.remove("show")
 

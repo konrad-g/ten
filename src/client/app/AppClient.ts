@@ -28,12 +28,11 @@ export class AppClient {
   }
 
   setupPjax = () => {
-    const self = this
 
     document.addEventListener("DOMContentLoaded", () => {
       new Pjax({ selectors: ["title", "header", "main"] })
       NProgress.configure({ parent: "body", showSpinner: false })
-      self.pagesCtrl.setupPage()
+      this.pagesCtrl.setupPage()
     })
 
     document.addEventListener("pjax:send", () => {
@@ -50,7 +49,7 @@ export class AppClient {
 
     document.addEventListener("pjax:success", () => {
       NProgress.done()
-      self.pagesCtrl.setupPage()
+      this.pagesCtrl.setupPage()
     })
   }
 

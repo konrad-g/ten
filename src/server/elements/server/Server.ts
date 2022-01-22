@@ -22,12 +22,11 @@ export class Server {
   }
 
   start = () => {
-    const self = this
-    const appExpress = self.getExpress()
-    self.port = self.normalizePort(process.env.PORT || "3000")
-    appExpress.set("port", self.port)
+    const appExpress = this.getExpress()
+    this.port = this.normalizePort(process.env.PORT || "3000")
+    appExpress.set("port", this.port)
 
-    self.server = http.createServer(appExpress)
+    this.server = http.createServer(appExpress)
 
     if (!this.isProduction) {
       // Automatically refresh page when server reboots
@@ -41,9 +40,9 @@ export class Server {
     }
 
     // Use multi-core on production
-    if (self.isProduction && cluster.isPrimary) {
-      console.log("Main cluster setting up " + self.numCPUs + " workers...")
-      for (let i = 0; i < self.numCPUs; i++) {
+    if (this.isProduction && cluster.isPrimary) {
+      console.log("Main cluster setting up " + this.numCPUs + " workers...")
+      for (let i = 0; i < this.numCPUs; i++) {
         cluster.fork()
       }
 
@@ -57,20 +56,20 @@ export class Server {
         cluster.fork()
       })
     } else {
-      self.server.listen(self.port)
-      self.server.on("error", (error) => {
-        self.onError(error)
+      this.server.listen(this.port)
+      this.server.on("error", (error) => {
+        this.onError(error)
       })
-      self.server.on("listening", () => {
-        self.onListening()
+      this.server.on("listening", () => {
+        this.onListening()
       })
     }
 
     // Run app
-    const app = new App(appExpress, self.appListener)
+    const app = new App(appExpress, this.appListener)
     app.setupRoutes()
 
-    const pageBase = new PageBase(appExpress, self.appListener)
+    const pageBase = new PageBase(appExpress, this.appListener)
     pageBase.setup()
   }
 

@@ -17,7 +17,6 @@ export class MainPage implements Page {
   }
 
   public execute = () => {
-    const self = this
     const toast = this.listener.getToast()
     const showToast = document.querySelector("#showToast")
     showToast.addEventListener("click", () => {
@@ -33,7 +32,7 @@ export class MainPage implements Page {
       } else if (executeToast < 4) {
         toast.showError("This is error", "This is error message.")
       } else if (executeToast <= 5) {
-        self.showMultipleToasts()
+        this.showMultipleToasts()
       }
     })
   }
