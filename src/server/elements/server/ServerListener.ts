@@ -46,6 +46,7 @@ export class ServerListener implements IPageMain {
     })
   }
 
+  // TODO: Remove
   pjaxMiddleware = (req, res, next) => {
     if (req.header("X-PJAX")) {
       req.pjax = true;
@@ -55,8 +56,8 @@ export class ServerListener implements IPageMain {
       options.layout = "layout";
 
       if (req.pjax) {
-        options.layout = "layout-ajax";
-        res.set("X-PJAX-URL", req.originalUrl);
+        // options.layout = "layout-ajax";
+        // res.set("X-PJAX-URL", req.originalUrl);
       }
 
       res.render(view, options);

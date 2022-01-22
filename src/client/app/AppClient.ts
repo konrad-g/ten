@@ -18,29 +18,45 @@ export class AppClient {
 
     self.toastLogger = new Toast(document.body)
 
-    const pjax = new Pjax({selectors: ['main']})
+    document.addEventListener("DOMContentLoaded", function() {
+      const pjax = new Pjax({ selectors: ['title', 'header', 'main'] })
+    })
 
-    // Example: https://github.com/MoOx/pjax/blob/master/example/example.js
     document.addEventListener("pjax:send", function() {
       console.log("Event: pjax:send", arguments);
     });
+    
+    document.addEventListener("pjax:complete", function() {
+      console.log("Event: pjax:complete", arguments);
+    });
+    
+    document.addEventListener("pjax:error", function() {
+      console.log("Event: pjax:error", arguments);
+    });
+    
+    document.addEventListener("pjax:success", function() {
+      console.log("Event: pjax:success", arguments);
+    });
 
-    document.querySelector("#showToast").addEventListener("click", () => {
-      const results = 5
-      const executeToast = results * Math.random()
-
-      if (executeToast < 1) {
-        self.toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message")
-      } else if (executeToast < 2) {
-        self.toastLogger.showWarning("This is warning", "This is warning message.")
-      } else if (executeToast < 3) {
-        self.toastLogger.showSuccess("Success", "You made it. Congratulations!")
-      } else if (executeToast < 4) {
-        self.toastLogger.showError("This is error", "This is error message.")
-      } else if (executeToast <= 5) {
-        self.showMultipleToasts()
-      }
-    })
+    const showToast = document.querySelector("#showToast")
+    if (!!showToast) {
+      showToast.addEventListener("click", () => {
+        const results = 5
+        const executeToast = results * Math.random()
+  
+        if (executeToast < 1) {
+          self.toastLogger.showInfo("This is info. It is really long and it doesn't really fit into this small toast", "This is info message")
+        } else if (executeToast < 2) {
+          self.toastLogger.showWarning("This is warning", "This is warning message.")
+        } else if (executeToast < 3) {
+          self.toastLogger.showSuccess("Success", "You made it. Congratulations!")
+        } else if (executeToast < 4) {
+          self.toastLogger.showError("This is error", "This is error message.")
+        } else if (executeToast <= 5) {
+          self.showMultipleToasts()
+        }
+      })
+    }
   }
 
   showMultipleToasts() {
