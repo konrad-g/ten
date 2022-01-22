@@ -1,4 +1,4 @@
-import { IPageMain } from "../pages/main/IPageMain"
+import { IPageMain } from "../pages/main/PageMain"
 import express from 'express';
 import * as path from 'path';
 import favicon from 'serve-favicon';
@@ -37,12 +37,14 @@ export class ServerListener implements IPageMain {
   }
 
   renderPage = (res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) => {
+    const year = new Date().getFullYear();
     res.render(viewName, {
-      title: title,
-      description: description,
+      title,
+      description,
       layout: "layout",
-      keywords: keywords,
-      disableIndexing: disableIndexing,
+      keywords,
+      disableIndexing,
+      year
     })
   }
 }

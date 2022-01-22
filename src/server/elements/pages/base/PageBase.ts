@@ -1,6 +1,9 @@
 import * as path from 'path';
-import { IPageBase } from './IPageBase';
 import hbs from 'hbs';
+
+export interface IPageBase {
+  addViewPath(viewsPath: string)
+}
 
 export class PageBase {
   

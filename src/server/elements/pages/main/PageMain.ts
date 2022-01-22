@@ -1,5 +1,9 @@
-import { IPageMain } from "./IPageMain"
 import * as path from 'path';
+
+export interface IPageMain {
+  renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean)
+  addViewPath(viewsPath: string)
+}
 
 export class PageMain {
   TITLE: string = "TEN stack"

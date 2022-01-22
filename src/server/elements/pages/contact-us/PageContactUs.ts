@@ -1,5 +1,9 @@
-import { IPageContactUs } from "./IPageContactUs"
 import * as path from 'path';
+
+export interface IPageContactUs {
+  renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean)
+  addViewPath(viewsPath: string)
+}
 
 export class PageContactUs {
   TITLE: string = "Contact Us"
