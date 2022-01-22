@@ -1,11 +1,11 @@
 import { IPageMain } from "../pages/main/PageMain"
-import express from 'express';
-import * as path from 'path';
-import favicon from 'serve-favicon';
-import logger from 'morgan';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import hbs from 'hbs';
+import express from "express"
+import * as path from "path"
+import favicon from "serve-favicon"
+import logger from "morgan"
+import cookieParser from "cookie-parser"
+import bodyParser from "body-parser"
+import hbs from "hbs"
 
 export class ServerListener implements IPageMain {
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png"
@@ -37,7 +37,7 @@ export class ServerListener implements IPageMain {
   }
 
   renderPage = (res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) => {
-    const year = new Date().getFullYear();
+    const year = new Date().getFullYear()
     res.render(viewName, {
       title,
       description,

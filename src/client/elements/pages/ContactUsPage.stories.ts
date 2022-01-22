@@ -1,15 +1,14 @@
-import { Story, Meta } from '@storybook/html';
-import { Toast } from '../toast/Toast';
-import { ContactUsPage } from './ContactUsPage';
+import { Story, Meta } from "@storybook/html"
+import { Toast } from "../toast/Toast"
+import { ContactUsPage } from "./ContactUsPage"
 
 export default {
-  title: 'App/ContactUsPage',
-} as Meta;
+  title: "App/ContactUsPage"
+} as Meta
 
 const Template: Story = () => {
-
-  const btn = document.createElement('div');
-  btn.innerText = "Contact Us";
+  const btn = document.createElement("div")
+  btn.innerText = "Contact Us"
 
   const onDomLoaded = () => {
     const page = new ContactUsPage({
@@ -21,8 +20,7 @@ const Template: Story = () => {
 
   document.addEventListener("DOMContentLoaded", onDomLoaded)
 
-  return btn;
-};
+  return btn
+}
 
-export const Main = Template.bind({});
-
+export const Main = Template.bind({})

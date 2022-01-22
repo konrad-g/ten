@@ -1,12 +1,11 @@
-import { Toast } from "../toast/Toast";
-import { Page } from "./PagesCtrl";
+import { Toast } from "../toast/Toast"
+import { Page } from "./PagesCtrl"
 
 export interface IContactUsPage {
   getToast: () => Toast
 }
 
 export class ContactUsPage implements Page {
-
   private listener: IContactUsPage
 
   constructor(listener: IContactUsPage) {
@@ -14,7 +13,7 @@ export class ContactUsPage implements Page {
   }
 
   public getPageId = (): string => {
-    return "contact-us";
+    return "contact-us"
   }
 
   public execute = () => {

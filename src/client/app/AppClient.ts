@@ -31,27 +31,27 @@ export class AppClient {
     const self = this
 
     document.addEventListener("DOMContentLoaded", () => {
-      new Pjax({ selectors: ['title', 'header', 'main'] })
-      NProgress.configure({ parent: "body", showSpinner: false });
+      new Pjax({ selectors: ["title", "header", "main"] })
+      NProgress.configure({ parent: "body", showSpinner: false })
       self.pagesCtrl.setupPage()
     })
 
     document.addEventListener("pjax:send", () => {
-      NProgress.start();
-    });
-    
+      NProgress.start()
+    })
+
     document.addEventListener("pjax:complete", () => {
-      NProgress.done();
-    });
-    
+      NProgress.done()
+    })
+
     document.addEventListener("pjax:error", () => {
-      NProgress.done();
-    });
-    
+      NProgress.done()
+    })
+
     document.addEventListener("pjax:success", () => {
-      NProgress.done();
+      NProgress.done()
       self.pagesCtrl.setupPage()
-    });
+    })
   }
 
   getToast = () => {

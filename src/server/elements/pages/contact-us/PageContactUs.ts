@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from "path"
 
 export interface IPageContactUs {
   renderPage(res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean)
@@ -15,13 +15,13 @@ export class PageContactUs {
   listener: IPageContactUs
 
   public static render(listener: IPageContactUs): Function {
-    const page = new PageContactUs(listener);
+    const page = new PageContactUs(listener)
     return page.render
   }
 
   public constructor(listener: IPageContactUs) {
     this.listener = listener
-    this.listener.addViewPath(path.join(__dirname, path.sep + "views"));
+    this.listener.addViewPath(path.join(__dirname, path.sep + "views"))
   }
 
   render = (req, res, next) => {

@@ -1,12 +1,11 @@
-import { Toast } from "../toast/Toast";
-import { Page } from "./PagesCtrl";
+import { Toast } from "../toast/Toast"
+import { Page } from "./PagesCtrl"
 
 export interface IMainPage {
   getToast: () => Toast
 }
 
 export class MainPage implements Page {
-
   private listener: IMainPage
 
   constructor(listener: IMainPage) {
@@ -14,7 +13,7 @@ export class MainPage implements Page {
   }
 
   public getPageId = (): string => {
-    return "main";
+    return "main"
   }
 
   public execute = () => {
@@ -39,7 +38,6 @@ export class MainPage implements Page {
     })
   }
 
-  
   private showMultipleToasts = () => {
     const toast = this.listener.getToast()
     toast.showInfo("This is info", "This is info message")

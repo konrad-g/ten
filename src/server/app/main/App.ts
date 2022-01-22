@@ -3,7 +3,6 @@ import { PageMain } from "../../elements/pages/main/PageMain"
 import { ServerListener } from "../../elements/server/ServerListener"
 
 export class App {
-
   router: any
   listener: ServerListener
 
@@ -13,13 +12,6 @@ export class App {
   }
 
   setupRoutes = () => {
-
-    // TODO
-    /*
-      - Fix all tests, add storybook
-      - Clean up code
-    */
-
     this.router.get("/", PageMain.render(this.listener))
     this.router.get("/contact-us", PageContactUs.render(this.listener))
   }

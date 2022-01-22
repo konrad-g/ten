@@ -1,12 +1,11 @@
-import * as path from 'path';
-import hbs from 'hbs';
+import * as path from "path"
+import hbs from "hbs"
 
 export interface IPageBase {
   addViewPath(viewsPath: string)
 }
 
 export class PageBase {
-  
   private router: any
   private listener: IPageBase
 
@@ -16,8 +15,8 @@ export class PageBase {
   }
 
   public setup = () => {
-    this.listener.addViewPath(path.join(__dirname, path.sep + "views"));
-    
+    this.listener.addViewPath(path.join(__dirname, path.sep + "views"))
+
     // Handle errors
     this.router.use(function (req, res, next) {
       const err: any = new Error("Not Found")
