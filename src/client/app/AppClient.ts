@@ -19,7 +19,7 @@ export class AppClient {
     self.toastLogger = new Toast(document.body)
 
     document.addEventListener("DOMContentLoaded", function() {
-      const pjax = new Pjax({ selectors: ['title', 'header', 'main'] })
+      new Pjax({ selectors: ['title', 'header', 'main'] })
     })
 
     document.addEventListener("pjax:send", function() {

@@ -24,7 +24,6 @@ export class ServerListener implements IPageMain {
     this.express.use(bodyParser.json())
     this.express.use(bodyParser.urlencoded({ extended: false }))
     this.express.use(cookieParser())
-    this.express.use(this.pjaxMiddleware)
 
     this.express.use("/src/client", express.static(path.join(__dirname, "../../../../src/client")))
     this.express.use("/dist", express.static(path.join(__dirname, "../../../../dist")))
@@ -38,31 +37,12 @@ export class ServerListener implements IPageMain {
   }
 
   renderPage = (res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) => {
-    res.renderPjax(viewName, {
+    res.render(viewName, {
       title: title,
       description: description,
+      layout: "layout",
       keywords: keywords,
       disableIndexing: disableIndexing,
     })
-  }
-
-  // TODO: Remove
-  pjaxMiddleware = (req, res, next) => {
-    if (req.header("X-PJAX")) {
-      req.pjax = true;
-    }
-
-    res.renderPjax = async function(view, options, fn) {
-      options.layout = "layout";
-
-      if (req.pjax) {
-        // options.layout = "layout-ajax";
-        // res.set("X-PJAX-URL", req.originalUrl);
-      }
-
-      res.render(view, options);
-    };
-
-    next();
   }
 }
