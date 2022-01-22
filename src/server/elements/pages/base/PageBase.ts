@@ -1,5 +1,4 @@
 import * as path from "path"
-import hbs from "hbs"
 
 export interface IPageBase {
   addViewPath(viewsPath: string)

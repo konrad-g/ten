@@ -22,12 +22,10 @@ export class PagesCtrl {
   }
 
   public setupPage = () => {
-    let self = this
+    this.closePage()
 
-    self.closePage()
-
-    let page = self.executeCurrentPageLogic()
-    if (page) self.currentPage = page
+    let page = this.executeCurrentPageLogic()
+    if (page) this.currentPage = page
   }
 
   private closePage = () => {

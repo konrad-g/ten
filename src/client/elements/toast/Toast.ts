@@ -46,7 +46,7 @@ export class Toast {
   }
 
   private addToast(toastHtml: string): any {
-    const _this = this
+    const self = this
 
     const container: any = this.getContainer()
     const toast: any = document.createElement("div")
@@ -60,11 +60,11 @@ export class Toast {
     toast.append(closeBtn)
 
     closeBtn.addEventListener("click", () => {
-      _this.removeToast(toast)
+      self.removeToast(toast)
     })
     setTimeout(() => {
-      _this.removeToast(toast)
-    }, _this.duration)
+      self.removeToast(toast)
+    }, self.duration)
 
     setTimeout(() => {
       toast.classList.add("show")

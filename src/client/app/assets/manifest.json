@@ -1,5 +1,5 @@
 {
-  "name": "XWeb24",
+  "name": "TEN",
   "icons": [{
         "src": "/src/client/app/assets/icon-192.png",
         "sizes": "192x192"
@@ -28,14 +28,12 @@
         "src": "/src/client/app/assets/icon-57.png",
         "sizes": "57x57"
       }],
-  "description": "Access your data everywhere.",
+  "description": "TypeScript + Express.js + Node",
   "developer": {
-    "name": "Digital Jetty",
-    "url": "https://digitaljetty.com"
+    "name": "Konrad Gadzinowski"
   },
   "default_locale": "en",
   "launch_path": "/",
   "start_url": "/",
-  "display": "fullscreen",
-  "orientation": "landscape"
+  "display": "fullscreen"
 }
