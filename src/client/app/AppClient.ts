@@ -3,6 +3,8 @@ import Pjax from "./../../../client-libs/node_modules/pjax"
 import "./styles/style.scss"
 import "./../../../client-libs/node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "./../../../client-libs/node_modules/bootstrap/dist/js/bootstrap.min.js"
+import "./../../../client-libs/node_modules/nprogress/nprogress.css"
+import NProgress from "./../../../client-libs/node_modules/nprogress/nprogress.js"
 
 export class AppClient {
   initiated = false
@@ -10,7 +12,7 @@ export class AppClient {
 
   constructor() {}
 
-  start() {
+  start = () => {
     if (this.initiated) return
     this.initiated = true
 
@@ -20,22 +22,23 @@ export class AppClient {
 
     document.addEventListener("DOMContentLoaded", function() {
       new Pjax({ selectors: ['title', 'header', 'main'] })
+      NProgress.configure({ parent: "body", showSpinner: false });
     })
 
     document.addEventListener("pjax:send", function() {
-      console.log("Event: pjax:send", arguments);
+      NProgress.start();
     });
     
     document.addEventListener("pjax:complete", function() {
-      console.log("Event: pjax:complete", arguments);
+      NProgress.done();
     });
     
     document.addEventListener("pjax:error", function() {
-      console.log("Event: pjax:error", arguments);
+      NProgress.done();
     });
     
     document.addEventListener("pjax:success", function() {
-      console.log("Event: pjax:success", arguments);
+      NProgress.done();
     });
 
     const showToast = document.querySelector("#showToast")
@@ -59,7 +62,7 @@ export class AppClient {
     }
   }
 
-  showMultipleToasts() {
+  showMultipleToasts = () => {
     this.toastLogger.showInfo("This is info", "This is info message")
     this.toastLogger.showSuccess("Success", "You made it. Congratulations!")
     this.toastLogger.showWarning("This is warning", "This is warning message")
