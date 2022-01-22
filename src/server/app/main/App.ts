@@ -16,7 +16,6 @@ export class App {
 
     // TODO
     /*
-      - Add pjax
       - Add per page logic
       - Fix all tests, add storybook
       - Clean up code
