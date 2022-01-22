@@ -38,11 +38,6 @@ Client tests configuration is in `karma.conf.js`
 ## To automatically format code  
 `npm run format-code`  
 
-## Style and scripts imports
-Put all imports you want to use in `gulpfile.js`. Then simply run `gulp dev` or `gulp prod`.  
-In development mode you will get all your imports as separate entries so they will be easy to debug.  
-In production mode all your imports will be put together and minified to single .js and .css file so that they are as small as possible and fast to load.
-
 ## The best way to develop
 Open two terminal windows, in one, start development server with:  
 `npm run start`  
