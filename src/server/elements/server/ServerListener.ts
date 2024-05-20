@@ -6,14 +6,20 @@ import logger from "morgan"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import hbs from "hbs"
+import { Git } from "../Git"
 
 export class ServerListener implements IPageMain {
   private FAVICON_PATH: string = "../../../client/app/assets/favicon.png"
 
+  isProduction: boolean
+  private commitNumber: string = Git.getCurrentCommitNumber(null) ?? Date.now().toString()
+
   public express = express()
   expressViews: Array<string> = new Array()
 
-  constructor() {}
+  constructor(isProduction: boolean) {
+    this.isProduction = isProduction
+  }
 
   init = () => {
     // view engine setup
@@ -38,12 +44,22 @@ export class ServerListener implements IPageMain {
 
   renderPage = (res, viewName: string, title: string, description: string, keywords: string, disableIndexing: boolean) => {
     const year = new Date().getFullYear()
+
+    let clientFilesId = ""
+    if (this.isProduction) {
+      clientFilesId = this.commitNumber ?? Date.now().toString()
+    } else {
+      // Invalidate cache in development mode
+      clientFilesId = Date.now().toString()
+    }
+
     res.render(viewName, {
       title,
       description,
       layout: "layout",
       keywords,
       disableIndexing,
+      clientFilesId,
       year
     })
   }

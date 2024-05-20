@@ -14,10 +14,11 @@ export class Server {
   debug = debug("final:server")
   numCPUs = os.cpus().length
   isProduction: boolean
-  appListener: ServerListener = new ServerListener()
+  appListener: ServerListener
 
   constructor(isProduction: boolean) {
     this.isProduction = isProduction
+    this.appListener = new ServerListener(isProduction)
     this.appListener.init()
   }
 
