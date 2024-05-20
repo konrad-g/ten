@@ -1,6 +1,7 @@
 import { Toast } from "../toast/Toast"
 import { Page } from "./PagesCtrl"
-import { createRoot } from 'react-dom';
+import { createRoot } from "react-dom/client"
+import React from "react"
 
 export interface IMainPage {
   getToast: () => Toast
@@ -18,9 +19,17 @@ export class MainPage implements Page {
   }
 
   public execute = () => {
-    const root = createRoot(document.getElementById('app'));
-    root.render(<h1>Hello, world</h1>);
+    const root = createRoot(document.getElementById("app"))
+    root.render(<Page />)
   }
 
   public onPageClose = () => {}
+}
+
+const Page = () => {
+  return (
+    <div>
+      <h1>This is a main page</h1>
+    </div>
+  )
 }
