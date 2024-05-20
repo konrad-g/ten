@@ -7,10 +7,7 @@
 - SCSS
 
 ## How to install
-`npm install -g gulp`  
-`npm install`  
-`cd client-libs`
-`npm install`
+`npm run install-all`  
 
 ## Start application in development mode  
 

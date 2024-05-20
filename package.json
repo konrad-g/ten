@@ -10,6 +10,7 @@
     "build-client": "gulp build-client",
     "build-client-dev": "gulp build-client-dev",
     "dev-client": "gulp dev-client",
+    "install-all": "npm install && cd client-libs && npm install && cd ..",
     "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
     "test-server": "mocha -r ts-node/register src/server/**/*.test.ts",
     "storybook": "start-storybook -p 6006",
