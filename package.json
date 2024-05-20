@@ -33,6 +33,8 @@
     "nprogress": "^0.2.0",
     "parcel": "^2.12.0",
     "pjax": "^0.2.8",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "reload": "^3.2.1",
     "sass": "^1.45.1",
     "sass-loader": "^12.4.0",
