@@ -10,40 +10,29 @@
 `npm run install-all`  
 
 ## Start application in development mode  
-
 `npm run start`  
 
 ## Start application in production mode  
-
 `npm run start-prod`  
   
 ## Run tests
 Run client Storybook tests: `npm run storybook`  
 Run server tests: `npm run test-server` 
 
-## Create development dependencies
-`npm run build-client-dev`  
-
 ## Create minimised production dependencies
-`npm run build-client`  
-
-## Watch client files, and rebuild them on change  
-`npm run dev-client`
+`npm run build-prod`  
 
 ## To automatically format code  
 `npm run format-code`  
 
 ## The best way to develop
-Open two terminal windows, in one, start development server with:  
+Start development server and start rebuilding client files on change with:  
 `npm run start`  
-  
-In another, start rebuilding client files on change:  
-`npm run dev-client`  
   
 Now open your app in a browser and start developing. The app will automatically refresh on any changes.  
 
 ## To deploy to production
-1. Build production client files with: `npm run build-client`  
+1. Build production client files with: `npm run build-prod`  
 2. Start the app in production mode with: `npm run start-prod`. You can for example use [PM2](https://github.com/Unitech/pm2), in order to run it continuously.  
 
 ## Architecture
