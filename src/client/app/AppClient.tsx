@@ -28,7 +28,6 @@ export class AppClient {
   }
 
   setupPjax = () => {
-
     document.addEventListener("DOMContentLoaded", () => {
       new Pjax({ selectors: ["title", "header", "main"], cacheBust: false })
       NProgress.configure({ parent: "body", showSpinner: false })

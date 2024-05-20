@@ -6,7 +6,7 @@ import debug from "debug"
 import * as http from "http"
 import * as os from "os"
 import reload from "reload"
-import chokidar from 'chokidar';
+import chokidar from "chokidar"
 
 export class Server {
   port
@@ -36,14 +36,14 @@ export class Server {
 
     if (!this.isProduction) {
       // Watch client files for changes
-      const watcherDist = chokidar.watch(['./dist']);
-      watcherDist.on('ready', () => {
-        watcherDist.on('all', async () => {
+      const watcherDist = chokidar.watch(["./dist"])
+      watcherDist.on("ready", () => {
+        watcherDist.on("all", async () => {
           if (this.reloadCtrl) {
             this.reloadCtrl.reload()
           }
-        });
-      });
+        })
+      })
 
       if (this.reloadCtrl) {
         this.reloadCtrl.reload()
