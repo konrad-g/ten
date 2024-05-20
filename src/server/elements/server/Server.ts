@@ -3,10 +3,10 @@ import cluster from "cluster"
 import { App } from "../../app/main/App"
 import { PageBase } from "../pages/base/PageBase"
 import debug from "debug"
-import livereload from "livereload"
-import connectLiveReload from "connect-livereload"
 import * as http from "http"
 import * as os from "os"
+import reload from "reload"
+import chokidar from 'chokidar';
 
 export class Server {
   port
@@ -15,6 +15,7 @@ export class Server {
   numCPUs = os.cpus().length
   isProduction: boolean
   appListener: ServerListener
+  reloadCtrl: any
 
   constructor(isProduction: boolean) {
     this.isProduction = isProduction
@@ -22,22 +23,31 @@ export class Server {
     this.appListener.init()
   }
 
-  start = () => {
-    const appExpress = this.getExpress()
+  start = async () => {
+    const mainServer = this.getExpress()
     this.port = this.normalizePort(process.env.PORT || "3000")
-    appExpress.set("port", this.port)
+    mainServer.set("port", this.port)
 
-    this.server = http.createServer(appExpress)
+    this.server = http.createServer(mainServer)
 
     if (!this.isProduction) {
-      // Automatically refresh page when server reboots
-      appExpress.use(connectLiveReload())
-      const liveReloadServer = livereload.createServer()
-      liveReloadServer.server.once("connection", () => {
-        setTimeout(() => {
-          liveReloadServer.refresh("/")
-        }, 100)
-      })
+      this.reloadCtrl = await reload(mainServer, { webSocketServerWaitStart: false })
+    }
+
+    if (!this.isProduction) {
+      // Watch client files for changes
+      const watcherDist = chokidar.watch(['./dist']);
+      watcherDist.on('ready', () => {
+        watcherDist.on('all', async () => {
+          if (this.reloadCtrl) {
+            this.reloadCtrl.reload()
+          }
+        });
+      });
+
+      if (this.reloadCtrl) {
+        this.reloadCtrl.reload()
+      }
     }
 
     // Use multi-core on production
@@ -67,10 +77,10 @@ export class Server {
     }
 
     // Run app
-    const app = new App(appExpress, this.appListener)
+    const app = new App(mainServer, this.appListener)
     app.setupRoutes()
 
-    const pageBase = new PageBase(appExpress, this.appListener)
+    const pageBase = new PageBase(mainServer, this.appListener)
     pageBase.setup()
   }
 

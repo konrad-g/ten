@@ -66,8 +66,11 @@
     {{{body}}}
   </main>
   <footer class="container">
-    <p>© 2017–{{year}} Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    <p>© 2026–{{year}} Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
   </footer>
+  {{#unless isProduction}}
+    <script src="/reload/reload.js"></script>
+  {{/unless}}
   {{> scripts}}
   </body>
 </html>

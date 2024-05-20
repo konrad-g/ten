@@ -60,6 +60,7 @@ export class ServerListener implements IPageMain {
       keywords,
       disableIndexing,
       clientFilesId,
+      isProduction: this.isProduction,
       year
     })
   }
