@@ -9,7 +9,6 @@
     "start-dev": "cross-env NODE_ENV=development nodemon --watch src --watch dist --watch test --ext ts,tsx,js,scss,css,hbs --exec '\"ts-node\" -- \"src/server/app/BootDev.ts\"'",
     "start-prod": "cross-env NODE_ENV=production \"ts-node\" \"./src/server/app/BootProd.ts\"",
     "build-prod": "npx parcel build src/client/app/AppClient.tsx --no-cache",
-    "install-all": "npm install && cd client-libs && npm install && cd ..",
     "format-code": "prettier --config .prettierrc \"{src/**/*,test/**/*}.{ts,tsx,css,less,scss,js,jsx}\" --write",
     "test-server": "mocha -r ts-node/register src/server/**/*.test.ts",
     "storybook": "start-storybook -p 6006",

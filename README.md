@@ -7,7 +7,7 @@
 - SCSS
 
 ## How to install
-`npm run install-all`  
+`npm install`  
 
 ## Start application in development mode  
 `npm run start`  
@@ -36,7 +36,6 @@ Now open your app in a browser and start developing. The app will automatically 
 2. Start the app in production mode with: `npm run start-prod`. You can for example use [PM2](https://github.com/Unitech/pm2), in order to run it continuously.  
 
 ## Architecture
-All client libraries are located in `client-libs`.  
 Both client and server consist of modular structure. That means certain folder order:  
 
 ```
