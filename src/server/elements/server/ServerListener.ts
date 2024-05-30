@@ -33,7 +33,6 @@ export class ServerListener implements IPageMain {
 
     this.express.use("/src/client", express.static(path.join(__dirname, "../../../../src/client")))
     this.express.use("/dist", express.static(path.join(__dirname, "../../../../dist")))
-    this.express.use("/client-libs", express.static(path.join(__dirname, "../../../../client-libs")))
   }
 
   public addViewPath(viewsPath: string) {
