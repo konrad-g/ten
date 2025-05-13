@@ -1,5 +1,8 @@
 # Starter app for TEN stack: TypeScript + Express + Node.js
 
+This project is a great, simple starting point. If you are looking for a fully featured framework, I recommend trying [RapDv](https://rapdv.com).  
+It's open-source and available on GitHub as well!
+
 ## Used technologies:
 - Node.JS + Cluster
 - TypeScript
