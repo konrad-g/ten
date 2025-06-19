@@ -1,8 +1,5 @@
 # Starter app for TEN stack: TypeScript + Express + Node.js
 
-This project is a great, simple starting point. If you are looking for a fully featured framework, I recommend trying [RapDv](https://rapdv.com).  
-It's open-source and available on GitHub as well!
-
 ## Used technologies:
 - Node.JS + Cluster
 - TypeScript
@@ -55,3 +52,10 @@ src/
 Folders functions:  
 `app` - Consist of main application, server or client. It basically wires all elements together.   
 `elements` - Independent elements. It means that they don't depend on any other elements or application source code or assets. They can only depend on libraries used by project. It makes them independent from this project, which means that they can be reused in other applications easily.   
+
+## RapDv - Feature-rich Framework
+
+This project is a great, simple starting point. If you are looking for a fully featured framework, I recommend trying [RapDv](https://rapdv.com).  
+It's open-source and available on GitHub as well!
+
+One of the websites using it is:  [Neudesk - Marketplace for Finding Business Services](https://neudesk.com)  
