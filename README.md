@@ -58,4 +58,4 @@ Folders functions:
 This project is a great, simple starting point. If you are looking for a fully featured framework, I recommend trying [RapDv](https://rapdv.com).  
 It's open-source and available on GitHub as well!
 
-One of the websites using it is:  [Neudesk - Marketplace for Finding Business Services](https://neudesk.com)  
+One of the websites using it is:  [Neudesk - Marketplace for Finding Marketing Services](https://neudesk.com)  
